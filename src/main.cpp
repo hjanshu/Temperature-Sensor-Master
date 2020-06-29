@@ -64,8 +64,9 @@ int tempUnitVar;
 int buzzerTime;
 int buzzerTimeVar;
 
-#define buzzerPin 2
-#define IRPin 12
+#define buzzerPin 3
+#define IRPin 2
+int ledPin = 11;
 
 #define maxTempAddr 0
 #define tempUnitAddr 3
@@ -83,6 +84,7 @@ void setup()
 {
   pinMode(buzzerPin, OUTPUT);
   pinMode(IRPin, INPUT);
+  pinMode(ledPin, OUTPUT);
 
   TCCR1B = TCCR1B & 0b11111000 | 0x01;
   Serial.begin(115200);
@@ -91,12 +93,12 @@ void setup()
   mlx.begin();
   bigNum.begin();
 
-  /* for (int i = 0; i < 1024; i++)
-  {
-    EEPROM.update(i, 0);
-  }
-
-  EEPROM.update(maxTempAddr, 95.1); */
+  //   for (int i = 0; i < 1024; i++)
+  //  {
+  //    EEPROM.update(i, 0);
+  //  }
+  //
+  //  EEPROM.update(maxTempAddr, 95.1);
 
   lcd.setCursor(0, 0);
   lcd.print("  CAMSOL ENGG  ");
@@ -166,6 +168,7 @@ void checkIRTrig()
       Wire.write('x');
       Wire.write(buzzerTimeVar);
       digitalWrite(buzzerPin, HIGH);
+      digitalWrite(ledPin, HIGH);
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("   HIGH TEMP   ");
@@ -173,6 +176,7 @@ void checkIRTrig()
       lcd.print("    DETECTED   ");
       delay(buzzerTimeVar * 1000);
       digitalWrite(buzzerPin, LOW);
+      digitalWrite(ledPin, LOW);
     }
 
     delay(2000);
