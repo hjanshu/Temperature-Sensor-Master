@@ -93,12 +93,12 @@ void setup()
   mlx.begin();
   bigNum.begin();
 
-  //   for (int i = 0; i < 1024; i++)
-  //  {
-  //    EEPROM.update(i, 0);
-  //  }
-  //
-  //  EEPROM.update(maxTempAddr, 95.1);
+  /* for (int i = 0; i < 1024; i++)
+  {
+    EEPROM.update(i, 0);
+  }
+
+  EEPROM.update(maxTempAddr, 95.1); */
 
   lcd.setCursor(0, 0);
   lcd.print("  CAMSOL ENGG  ");
@@ -216,9 +216,9 @@ byte read_LCD_buttons()
   if (adc_key_in < 580 && adc_key_in > 480)
     return btnRIGHT;
   if (adc_key_in < 280 && adc_key_in > 150)
-    return btnDOWN;
-  if (adc_key_in < 380 && adc_key_in > 280)
     return btnUP;
+  if (adc_key_in < 380 && adc_key_in > 280)
+    return btnDOWN;
   if (adc_key_in < 640 && adc_key_in > 580)
     return btnLEFT;
   if (adc_key_in < 1000 && adc_key_in > 900)
